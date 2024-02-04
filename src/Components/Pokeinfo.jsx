@@ -1,7 +1,6 @@
 import React from "react";
 
 const Pokeinfo = ({ data }) => {
-   
     return (
         <>
         {
@@ -14,7 +13,7 @@ const Pokeinfo = ({ data }) => {
                             data.abilities.map(poke=>{
                                 return(
                                     <>
-                                     <div className="group">
+                                        <div className="group">
                                         <h2>{poke.ability.name}</h2>
                                     </div>
                                     </>

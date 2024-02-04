@@ -20,19 +20,24 @@ const Main=()=>{
             setLoading(false)
     }
 
-    const getPokemon=async(res)=>{
-        res.map(async(item)=>{
-            const result=await axios.get(item.url)
-            setPokeData(state=>{
-                state=[...state,result.data]
-                state.sort((a,b)=>a.id>b.id?1:-1)
-                return state; // push state into array
-            })
-            // console.log(item.url + ' gebruik  this later endy') 
-            //   this can be use to make my game for pokemon pikker
-        })
-    }
-
+// console.log(item.url + ' gebruik  this later endy') 
+//   this can be use to make my game for pokemon pikker
+    const getPokemon = async (res) => {
+        const pokemonDetails = await Promise.all(res.map(async (item) => {
+        const result = await axios.get(item.url);
+        return result.data;
+        }));
+    
+        setPokeData((prevData) => {
+        const newData = [...prevData, ...pokemonDetails];
+        newData.sort((a, b) => a.id > b.id ? 1 : -1);
+        return newData;
+        });
+    };
+    // we stil have a bug here were everying comes out dubble react strictmode  is on form what i heard and found 
+    // useState(() => {
+    //     pokeFun();
+    // }, [url]); it fixes this but then the next url does not want to work when pressed 
     useEffect(()=>{
         pokefun();
     },[url])
@@ -43,8 +48,17 @@ const Main=()=>{
             <div className="left-content">
                 <Card pokemon={pokeData} loading={loading} infoPokemon={poke=>setPokeDex(poke)}/>
                 <div className="btn-group">
-                    <button>Pevions</button>
-                    <button>Next</button>
+
+                    {prevUrl && <button onClick={()=>{
+                        setPokeData([]);
+                        setUrl(prevUrl)
+                    }}>Pevions</button>}
+
+                    {nextUrl && <button onClick={()=>{
+                        setPokeData([]);
+                        setUrl(nextUrl)
+                    }}
+                    >Next</button>}
                 </div>
             </div>
             <div className="right-content">
