@@ -8,7 +8,8 @@ const Main=()=>{
     const [url,setUrl]=useState(' https://pokeapi.co/api/v2/pokemon/')
     const [nextUrl,setNextUrl]=useState();
     const [prevUrl,setPrevUrl]=useState();
- 
+    const [pokeDex,setPokeDex]=useState();
+
     const pokefun=async()=>{
             setLoading(true)
             const res=await axios.get(url);
@@ -24,10 +25,11 @@ const Main=()=>{
             const result=await axios.get(item.url)
             setPokeData(state=>{
                 state=[...state,result.data]
-                return state; // push function into and array
+                state.sort((a,b)=>a.id>b.id?1:-1)
+                return state; // push state into array
             })
             // console.log(item.url + ' gebruik  this later endy') 
-            //   this can be use to make my game for pokemon pikker 
+            //   this can be use to make my game for pokemon pikker
         })
     }
 
@@ -39,19 +41,14 @@ const Main=()=>{
         <>
         <div className="container">
             <div className="left-content">
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
+                <Card pokemon={pokeData} loading={loading} infoPokemon={poke=>setPokeDex(poke)}/>
                 <div className="btn-group">
                     <button>Pevions</button>
                     <button>Next</button>
                 </div>
             </div>
             <div className="right-content">
-                <Pokeinfo/>
+                <Pokeinfo data={pokeDex}/>
             </div>
         </div>
         </>
