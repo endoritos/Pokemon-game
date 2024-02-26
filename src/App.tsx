@@ -1,12 +1,12 @@
 // @ts-ignore
-import Main from './Components/Main';
+import Memory from './Components/Memory';
 
-import './Components/Styles.css'
+/* import './Components/Styles.css' */
 
 function App() {
   return (
     <>
-      <Main/>
+      <Memory/>
     </>
   );
 }
