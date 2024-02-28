@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import "./PokeCard.css";
-import { fetchUserInfo } from '../Api/api'
+import { fetchUserInfo } from "../Api/api";
 
 /*how many tries left*/
 
@@ -27,8 +27,7 @@ const Memory = () => {
     if (userId && gameId && hash) {
       fetchUserAndSetupGame(userId, gameId, hash);
     } else {
-      console.error("Missing URL parameters for userId, gameId, or hash.");
-      // Handle missing parameters as appropriate for your application
+        window.alert('Game info was not pas on properly go to the website and try again https://109118.cvoatweb.be/')
     }
   }, []);
 
@@ -66,12 +65,9 @@ const Memory = () => {
     try {
       const userInfo = await fetchUserInfo(userId, gameId, hash);
       console.log("Fetched User Info:", userInfo);
-      // Perform additional setup or state updates with userInfo as needed
-
-      // Optionally, fetch Pokemon or setup game further here if dependent on user info
+      setUserInfo(userInfo);
     } catch (error) {
-      console.error("Failed to fetch user info:", error);
-      // Handle error as appropriate for your application
+      window.alert('Game info was not pas on properly go to the website and try again https://109118.cvoatweb.be/')
     }
   };
 
@@ -173,8 +169,19 @@ const Memory = () => {
   return (
     <>
       <div className="bg-gray-100 min-h-screen flex flex-col items-center p-8">
-        <h1 className="font-bold">Memory game</h1>
-        <button onClick={shuffleCards}>Start game</button>
+        <h1 className="font-bold">Memory Game</h1>
+        {/* check not null display user name and photo */}
+        {userInfo && (
+          <div className="user-info">
+            <h2>Name: {userInfo.name}</h2>
+            <img
+              src={`https://109118.cvoatweb.be/${userInfo.photo}`}
+              alt="User Profile"
+              className="user-profile-picture"
+            />
+          </div>
+        )}
+        <button onClick={shuffleCards}>Start Game</button>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {cards.map((poke, index) => (
@@ -183,18 +190,18 @@ const Memory = () => {
               className="p-3 transition ease-in-out  hover:bg-gray-200  cursor-pointer rounded-md"
             >
               <div>
-                {poke === choiceOne || poke == choiceTwo || poke.matched ? (
+                {poke === choiceOne || poke === choiceTwo || poke.matched ? (
                   <img
                     className="w-full h-24"
                     src={poke.sprite}
-                    alt="front card"
+                    alt="Front card"
                   />
                 ) : (
                   <img
                     onClick={() => handleClick(poke)}
                     className="w-full h-24"
                     src="/images/pokeball.png"
-                    alt="back card"
+                    alt="Back card"
                   />
                 )}
               </div>
