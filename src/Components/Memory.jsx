@@ -260,19 +260,6 @@ const Memory = () => {
     <>
       <body className="bg-gray-100">
         <div className="bg-gray-100 min-h-screen flex flex-col items-center p-8">
-          <h1 className="font-bold">Memory Game</h1>
-          {/* check not null display user name and photo */}
-          {userInfo && (
-            <div className="user-info">
-              <h2>Name: {userInfo.name}</h2>
-              <img
-                src={`https://109118.cvoatweb.be/${userInfo.photo}`}
-                alt="User Profile"
-                className="user-profile-picture"
-              />
-            </div>
-          )}
-          <button onClick={shuffleCards}>Start Game</button>
           <div>
             <p>Stopwatch: {time} seconds</p>
             <p>Rounds: {rounds}</p>
@@ -303,9 +290,48 @@ const Memory = () => {
               </div>
             ))}
           </div>
-          <p>Turns left: {turns}</p>
-          <button onClick={handleStopGame}>Save and exit</button>
+          <h1 className="text-2xl pl-2 font-extrabold">Turns left: {turns}</h1>
         </div>
+
+        <header>
+          <nav className="flex items-center justify-between flex-wrap p-6 fixed w-full z-10 top-0 bg-gray-600">
+            {/* Logo or Brand Name */}
+            <div className="flex items-center flex-shrink-0 text-white mr-6">
+              <a className="text-white no-underline hover:text-white hover:no-underline">
+                <span className="text-2xl pl-2 font-extrabold">
+                  <button onClick={shuffleCards}>Start Game</button>
+                </span>
+
+                {/* check not null display user name and photo */}
+                {userInfo && (
+                  <div className="user-info">
+                    <h2>Name: {userInfo.name}</h2>
+                    <img
+                      src={`https://109118.cvoatweb.be/${userInfo.photo}`}
+                      alt="User Profile"
+                      className="w-24 h-24 md:w-48 md:h-auto md:rounded-none rounded-full mx-auto"
+                    />
+                  </div>
+                )}
+              </a>
+            </div>
+
+            {/* Navigation Links */}
+            <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+              <div className="text-sm lg:flex-grow">
+                <h1>
+                  <div>
+                    <p>Stopwatch: {time} seconds</p>
+                    <p>Rounds: {rounds}</p>
+                  </div>
+                </h1>
+
+                <h1></h1>
+              </div>
+            </div>
+            <button onClick={handleStopGame}>Save and exit</button>
+          </nav>
+        </header>
       </body>
     </>
   );
