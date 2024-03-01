@@ -258,10 +258,12 @@ const Memory = () => {
 
   return (
     <>
+      <head>
+        <title>pika pika</title>
+      </head>
       <body className="bg-gray-100">
         <div className="bg-gray-100 min-h-screen flex flex-col items-center mt-10 p-8">
-
-<p className="mt-5"></p>
+          <p className="mt-5"></p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {cards.map((poke, index) => (
               <div
@@ -311,11 +313,13 @@ const Memory = () => {
             {/* Navigation Links */}
             <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
               <div className="text-sm lg:flex-grow">
-              <img
-                      src={`https://109118.cvoatweb.be/${userInfo.photo}`}
-                      alt="User Profile"
-                      className="w-6 h-6 rounded-full bg-slate-100 ring-2 ring-white"
-                    />
+                {userInfo && (
+                  <img
+                    src={`https://109118.cvoatweb.be/${userInfo.photo}`}
+                    alt="User Profile"
+                    className="w-6 h-6 rounded-full bg-slate-100 ring-2 ring-white"
+                  />
+                )}
                 <h1>
                   <div>
                     <p>Stopwatch: {time} seconds</p>
