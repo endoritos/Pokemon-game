@@ -309,7 +309,7 @@ const Memory = () => {
                     <img
                       src={`https://109118.cvoatweb.be/${userInfo.photo}`}
                       alt="User Profile"
-                      className="w-24 h-24 md:w-48 md:h-auto md:rounded-none rounded-full mx-auto"
+                      className="w-6 h-6 rounded-full bg-slate-100 ring-2 ring-white"
                     />
                   </div>
                 )}
