@@ -259,12 +259,9 @@ const Memory = () => {
   return (
     <>
       <body className="bg-gray-100">
-        <div className="bg-gray-100 min-h-screen flex flex-col items-center p-8">
-          <div>
-            <p>Stopwatch: {time} seconds</p>
-            <p>Rounds: {rounds}</p>
-          </div>
+        <div className="bg-gray-100 min-h-screen flex flex-col items-center mt-10 p-8">
 
+<p className="mt-5"></p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {cards.map((poke, index) => (
               <div
