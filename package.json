@@ -1,6 +1,7 @@
 {
   "name": "pokemon-game",
   "private": true,
+  "proxy": "https://109118.cvoatweb.be",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
